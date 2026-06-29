@@ -5,6 +5,11 @@ import Stats from "./pages/stats";
 import Highlights from "./pages/highlights";
 import Shelves from "./pages/shelves";
 import Notes from "./pages/notes";
+import Library from "./pages/Library/library";
+import CurrentlyReading from "./pages/Library/currentlyReading";
+import WantToRead from "./pages/Library/wantToRead";
+import Finished from "./pages/Library/finished";
+import Favorites from "./pages/Library/favourites";
 import { Routes, Route } from "react-router-dom";
 function App() {
   return (
@@ -16,11 +21,11 @@ function App() {
         <Route path="/highlights" element={<Highlights />} />
         <Route path="/notes" element={<Notes />} />
         <Route path="/shelves" element={<Shelves />} />
-        {/* <Route path="/library" element={<Library />} />
+        <Route path="/library" element={<Library />} />
         <Route path="/library/currently-reading" element={<CurrentlyReading />} />
         <Route path="/library/want-to-read" element={<WantToRead />} />
         <Route path="/library/finished" element={<Finished />} />
-        <Route path="/library/favorites" element={<Favorites />} /> */}
+        <Route path="/library/favorites" element={<Favorites />} />
       </Routes>
     </Layout>
   );

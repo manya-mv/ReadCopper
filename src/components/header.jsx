@@ -2,7 +2,7 @@ import { FiSearch, FiBarChart2, FiUser } from "react-icons/fi";
 
 export function Header() {
   return (
-    <header className="h-16 px-6 border-b flex items-center justify-between">
+    <header className="h-20 px-6 border-b flex items-center justify-between">
       <h1 className="text-2xl font-bold text-amber-600">
         ReadCopper
       </h1>
