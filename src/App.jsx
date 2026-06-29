@@ -1,10 +1,17 @@
+import Layout from "./components/Layout";
+import Home from "./pages/Home";
+import Settings from "./pages/settings";
+import { Routes, Route } from "react-router-dom";
 function App() {
   return (
-    <div className="min-h-screen bg-slate-900 flex items-center justify-center">
-      <h1 className="text-5xl font-bold text-amber-500">
-        ReadCopper 📚
-      </h1>
-    </div>
+    <Layout>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        {/* <Route path="/library" element={<Library />} />
+        <Route path="/stats" element={<Stats />} /> */}
+        <Route path="/settings" element={<Settings />} />
+      </Routes>
+    </Layout>
   );
 }
 
