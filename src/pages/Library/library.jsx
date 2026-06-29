@@ -1,11 +1,26 @@
 import { FiSearch, FiUpload } from "react-icons/fi";
 import BookGrid from "../../components/BookGrid";
-import { books } from "../../data/books";
+import { useContext } from "react";
+import { BookContext } from "../../context/BookContext";
 import { useState } from "react";
 import UploadModal from "../../components/UploadModal";
 
 function Library() {
+const { books, setBooks } = useContext(BookContext);
 const [isModalOpen, setIsModalOpen] = useState(false);
+function handleUpload(file) {
+  const newBook = {
+    id: Date.now(),
+    title: file.name.replace(/\.(pdf|epub)$/i, ""),
+    author: "Unknown Author",
+    cover: "https://placehold.co/250x350?text=Book",
+    file,
+    status: "want-to-read",
+    favourite: false,
+  };
+
+  setBooks((prevBooks) => [...prevBooks, newBook]);
+}
   return (
     <div className="p-8">
       {/* Top Section */}
@@ -35,9 +50,10 @@ const [isModalOpen, setIsModalOpen] = useState(false);
       {/* Books */}
       <BookGrid books={books} />
       <UploadModal
-    isOpen={isModalOpen}
-    onClose={() => setIsModalOpen(false)}
-        />
+  isOpen={isModalOpen}
+  onClose={() => setIsModalOpen(false)}
+  onUpload={handleUpload}
+/>
     </div>
   );
 }
