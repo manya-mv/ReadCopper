@@ -4,23 +4,24 @@ import { useContext } from "react";
 import { BookContext } from "../../context/BookContext";
 import { useState } from "react";
 import UploadModal from "../../components/UploadModal";
+import { createBook } from "../../services/bookService";
+// import { saveBookFile } from "../../services/storageService";
 
 function Library() {
-const { books, setBooks } = useContext(BookContext);
-const [isModalOpen, setIsModalOpen] = useState(false);
-function handleUpload(file) {
-  const newBook = {
-    id: Date.now(),
-    title: file.name.replace(/\.(pdf|epub)$/i, ""),
-    author: "Unknown Author",
-    cover: "https://placehold.co/250x350?text=Book",
-    file,
-    status: "want-to-read",
-    favourite: false,
-  };
+  const { books, setBooks } = useContext(BookContext);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  setBooks((prevBooks) => [...prevBooks, newBook]);
-}
+  async function handleUpload(file) {
+    try {
+      const newBook = await createBook(file);
+
+      setBooks((prevBooks) => [...prevBooks, newBook]);
+    } catch (error) {
+      alert(error.message);
+    }
+  }
+  
+
   return (
     <div className="p-8">
       {/* Top Section */}
@@ -50,10 +51,10 @@ function handleUpload(file) {
       {/* Books */}
       <BookGrid books={books} />
       <UploadModal
-  isOpen={isModalOpen}
-  onClose={() => setIsModalOpen(false)}
-  onUpload={handleUpload}
-/>
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onUpload={handleUpload}
+      />
     </div>
   );
 }

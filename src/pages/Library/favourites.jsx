@@ -1,20 +1,15 @@
+import { useContext } from "react";
+import { BookContext } from "../../context/BookContext";
 import BookGrid from "../../components/BookGrid";
-import { books } from "../../data/books";
 
-function Favorites() {
-  const favoriteBooks = books.filter(
-    (book) => book.favourite
-  );
+function WantToRead() {
+  const { books } = useContext(BookContext);
 
-  return (
-    <div className="p-8">
-      <h1 className="mb-8 text-3xl font-bold">
-        Favorites
-      </h1>
+  const favouriteBooks = books.filter(
+  (book) => book.favourite
+);
 
-      <BookGrid books={favoriteBooks} />
-    </div>
-  );
+return <BookGrid books={favouriteBooks} />;
 }
 
-export default Favorites;
+export default WantToRead;

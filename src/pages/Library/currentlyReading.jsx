@@ -1,20 +1,15 @@
+import { useContext } from "react";
+import { BookContext } from "../../context/BookContext";
 import BookGrid from "../../components/BookGrid";
-import { books } from "../../data/books";
 
-function CurrentlyReading() {
-  const currentlyReading = books.filter(
-    (book) => book.status === "currently-reading"
-  );
+function WantToRead() {
+  const { books } = useContext(BookContext);
 
-  return (
-    <div className="p-8">
-      <h1 className="mb-8 text-3xl font-bold">
-        Currently Reading
-      </h1>
+  const currentlyReadingBooks = books.filter(
+  (book) => book.status === "currently-reading"
+);
 
-      <BookGrid books={currentlyReading} />
-    </div>
-  );
+return <BookGrid books={currentlyReadingBooks} />;
 }
 
-export default CurrentlyReading;
+export default WantToRead;

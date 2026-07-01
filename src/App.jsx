@@ -9,6 +9,7 @@ import Library from "./pages/Library/library";
 import CurrentlyReading from "./pages/Library/currentlyReading";
 import WantToRead from "./pages/Library/wantToRead";
 import Finished from "./pages/Library/finished";
+import Reader from "./pages/Reader";
 import Favorites from "./pages/Library/favourites";
 import { Routes, Route } from "react-router-dom";
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route path="/library/want-to-read" element={<WantToRead />} />
         <Route path="/library/finished" element={<Finished />} />
         <Route path="/library/favorites" element={<Favorites />} />
+        <Route path="/reader/:id" element={<Reader />} />
       </Routes>
     </Layout>
   );
